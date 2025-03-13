@@ -27,8 +27,16 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case productDetailsScreenRoute:
       return MaterialPageRoute(
         builder: (context) {
-          bool isProductAvailable = settings.arguments as bool? ?? true;
-          return ProductDetailsScreen(isProductAvailable: isProductAvailable);
+          final arguments = settings.arguments as Map<String, dynamic>?;
+
+          if (arguments == null || !arguments.containsKey('productId')) {
+            return Scaffold(
+              body: Center(child: Text("Error: No product ID provided")),
+            );
+          }
+
+          int productId = arguments['productId'] as int;
+          return ProductDetailsScreen(productId: productId);
         },
       );
     case productReviewsScreenRoute:
