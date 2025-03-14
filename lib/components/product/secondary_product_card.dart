@@ -25,20 +25,28 @@ class SecondaryProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: () {},
-      style: style ??
-          OutlinedButton.styleFrom(
-              minimumSize: const Size(256, 114),
-              maximumSize: const Size(256, 114),
-              padding: const EdgeInsets.all(8)),
+    return Container(
+      width: 250,
+      height: MediaQuery.of(context).size.height/4,
+      // padding: const EdgeInsets.symmetric(
+      //   vertical: 4
+      // ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(
+          color: Colors.black,
+          // width: 4.0,
+          style: BorderStyle.solid,
+        ), //Border.all
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
       child: Row(
         children: [
           AspectRatio(
             aspectRatio: 1.15,
             child: Stack(
               children: [
-                NetworkImageWithLoader(image, radius: defaultBorderRadious),
+                NetworkImageWithLoader(image, radius: defaultBorderRadious, fit: BoxFit.fitWidth),
                 if (dicountPercent != null)
                   Positioned(
                     right: defaultPadding / 2,
